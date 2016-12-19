@@ -58,12 +58,12 @@ function companies(){
             place_id = data.results[i]['place_id']
             https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJxdKyA430rIkRktoRobjpdUU&key=AIzaSyB6UnGTKVEIBUmCUjjB_iQVtooMae2qfRI
             $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + place_id + '&key=AIzaSyB6UnGTKVEIBUmCUjjB_iQVtooMae2qfRI').done(function (stuff){
-                console.log(stuff.result)
-                $companies.html($companies.html() + "<tr><td>" + "Address: "
+                console.log(stuff.result['website'])
+                $companies.html($companies.html() + "<tr><td>" + stuff.result['name'] + '<br>' + "Address: "
                                                     + stuff.result['formatted_address'] + '<br>'
                                                     + stuff.result['formatted_phone_number'] + '<br>'
-                                                    + "Website: " + '<a href=' + stuff.result['website'] + "'>" + stuff.result['website'] + '</a><br>')
-                console.log('<a href=' + stuff.result['website'] + '></a>' + '<br>' + '<hr>')
+                                                    + "Website: " + "<a href='" + stuff.result['website'] + "'>" + stuff.result['website'] + '</a><br>')
+                console.log('<a href=' + stuff.result['website'] + '></a>' + '<br>')
             })
         }
         $('#companies').append($companies)
